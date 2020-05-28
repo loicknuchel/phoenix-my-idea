@@ -117,6 +117,11 @@ defmodule MyIdea.Web do
     Repo.all(Idea)
   end
 
+  def list_ideas_by_project!(project_id) do
+    q = from(r in Idea, where: r.project_id == ^project_id)
+    Repo.all(q)
+  end
+
   @doc """
   Gets a single idea.
 

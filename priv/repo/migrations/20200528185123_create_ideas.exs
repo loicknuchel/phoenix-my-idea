@@ -5,7 +5,7 @@ defmodule MyIdea.Repo.Migrations.CreateIdeas do
     create table(:ideas) do
       add :title, :string
       add :description, :text
-      add :project_id, references(:projects, on_delete: :nothing)
+      add :project_id, references(:projects, on_delete: :delete_all)
 
       timestamps()
     end

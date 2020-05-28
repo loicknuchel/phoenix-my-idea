@@ -13,7 +13,8 @@ defmodule MyIdea.Web.Idea do
   @doc false
   def changeset(idea, attrs) do
     idea
-    |> cast(attrs, [:title, :description])
-    |> validate_required([:title, :description])
+    |> cast(attrs, [:title, :description, :project_id])
+    |> validate_required([:title, :description, :project_id])
+    |> foreign_key_constraint(:project_id)
   end
 end

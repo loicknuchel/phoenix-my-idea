@@ -28,7 +28,8 @@ defmodule MyIdeaWeb.ProjectController do
 
   def show(conn, %{"id" => id}) do
     project = Web.get_project!(id)
-    render(conn, "show.html", project: project)
+    ideas = Web.list_ideas_by_project!(id)
+    render(conn, "show.html", project: project, ideas: ideas)
   end
 
   def edit(conn, %{"id" => id}) do
