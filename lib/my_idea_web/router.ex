@@ -18,6 +18,7 @@ defmodule MyIdeaWeb.Router do
 
     get "/", PageController, :index
     resources "/projects", ProjectController
+    resources "/ideas", IdeaController
   end
 
   # Other scopes may use custom stacks.
