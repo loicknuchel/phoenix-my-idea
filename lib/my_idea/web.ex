@@ -102,104 +102,104 @@ defmodule MyIdea.Web do
     Project.changeset(project, attrs)
   end
 
-  alias MyIdea.Web.Idea
+  alias MyIdea.Web.Suggestion
 
   @doc """
-  Returns the list of ideas.
+  Returns the list of suggestions.
 
   ## Examples
 
-      iex> list_ideas()
-      [%Idea{}, ...]
+      iex> list_suggestions()
+      [%Suggestion{}, ...]
 
   """
-  def list_ideas do
-    Repo.all(Idea)
+  def list_suggestions do
+    Repo.all(Suggestion)
   end
 
-  def list_ideas_by_project!(project_id) do
-    q = from(r in Idea, where: r.project_id == ^project_id)
+  def list_suggestions_by_project!(project_id) do
+    q = from(r in Suggestion, where: r.project_id == ^project_id)
     Repo.all(q)
   end
 
   @doc """
-  Gets a single idea.
+  Gets a single suggestion.
 
-  Raises `Ecto.NoResultsError` if the Idea does not exist.
+  Raises `Ecto.NoResultsError` if the Suggestion does not exist.
 
   ## Examples
 
-      iex> get_idea!(123)
-      %Idea{}
+      iex> get_suggestion!(123)
+      %Suggestion{}
 
-      iex> get_idea!(456)
+      iex> get_suggestion!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_idea!(id), do: Repo.get!(Idea, id)
+  def get_suggestion!(id), do: Repo.get!(Suggestion, id)
 
   @doc """
-  Creates a idea.
+  Creates a suggestion.
 
   ## Examples
 
-      iex> create_idea(%{field: value})
-      {:ok, %Idea{}}
+      iex> create_suggestion(%{field: value})
+      {:ok, %Suggestion{}}
 
-      iex> create_idea(%{field: bad_value})
+      iex> create_suggestion(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_idea(attrs \\ %{}) do
-    %Idea{}
-    |> Idea.changeset(attrs)
+  def create_suggestion(attrs \\ %{}) do
+    %Suggestion{}
+    |> Suggestion.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a idea.
+  Updates a suggestion.
 
   ## Examples
 
-      iex> update_idea(idea, %{field: new_value})
-      {:ok, %Idea{}}
+      iex> update_suggestion(suggestion, %{field: new_value})
+      {:ok, %Suggestion{}}
 
-      iex> update_idea(idea, %{field: bad_value})
+      iex> update_suggestion(suggestion, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_idea(%Idea{} = idea, attrs) do
-    idea
-    |> Idea.changeset(attrs)
+  def update_suggestion(%Suggestion{} = suggestion, attrs) do
+    suggestion
+    |> Suggestion.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a idea.
+  Deletes a suggestion.
 
   ## Examples
 
-      iex> delete_idea(idea)
-      {:ok, %Idea{}}
+      iex> delete_suggestion(suggestion)
+      {:ok, %Suggestion{}}
 
-      iex> delete_idea(idea)
+      iex> delete_suggestion(suggestion)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_idea(%Idea{} = idea) do
-    Repo.delete(idea)
+  def delete_suggestion(%Suggestion{} = suggestion) do
+    Repo.delete(suggestion)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking idea changes.
+  Returns an `%Ecto.Changeset{}` for tracking suggestion changes.
 
   ## Examples
 
-      iex> change_idea(idea)
-      %Ecto.Changeset{data: %Idea{}}
+      iex> change_suggestion(suggestion)
+      %Ecto.Changeset{data: %Suggestion{}}
 
   """
-  def change_idea(%Idea{} = idea, attrs \\ %{}) do
-    Idea.changeset(idea, attrs)
+  def change_suggestion(%Suggestion{} = suggestion, attrs \\ %{}) do
+    Suggestion.changeset(suggestion, attrs)
   end
 end

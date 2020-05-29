@@ -62,68 +62,68 @@ defmodule MyIdea.WebTest do
     end
   end
 
-  describe "ideas" do
+  describe "suggestions" do
     alias MyIdea.Web.Project
-    alias MyIdea.Web.Idea
+    alias MyIdea.Web.Suggestion
 
     @project_valid_attrs %{name: "some name"}
     @valid_attrs %{description: "some description", title: "some title", project_id: nil}
     @update_attrs %{description: "some updated description", title: "some updated title", project_id: nil}
     @invalid_attrs %{description: nil, title: nil, project_id: nil}
 
-    def idea_fixture(attrs \\ %{}) do
+    def suggestion_fixture(attrs \\ %{}) do
       {:ok, %Project{} = project} = Web.create_project(@project_valid_attrs)
-      {:ok, idea} =
+      {:ok, suggestion} =
         attrs
         |> Enum.into(%{@valid_attrs | project_id: project.id})
-        |> Web.create_idea()
+        |> Web.create_suggestion()
 
-      idea
+      suggestion
     end
 
-    test "list_ideas/0 returns all ideas" do
-      idea = idea_fixture()
-      assert Web.list_ideas() == [idea]
+    test "list_suggestions/0 returns all suggestions" do
+      suggestion = suggestion_fixture()
+      assert Web.list_suggestions() == [suggestion]
     end
 
-    test "get_idea!/1 returns the idea with given id" do
-      idea = idea_fixture()
-      assert Web.get_idea!(idea.id) == idea
+    test "get_suggestion!/1 returns the suggestion with given id" do
+      suggestion = suggestion_fixture()
+      assert Web.get_suggestion!(suggestion.id) == suggestion
     end
 
-    test "create_idea/1 with valid data creates a idea" do
+    test "create_suggestion/1 with valid data creates a suggestion" do
       {:ok, %Project{} = project} = Web.create_project(@project_valid_attrs)
-      assert {:ok, %Idea{} = idea} = Web.create_idea(%{@valid_attrs | project_id: project.id})
-      assert idea.description == "some description"
-      assert idea.title == "some title"
+      assert {:ok, %Suggestion{} = suggestion} = Web.create_suggestion(%{@valid_attrs | project_id: project.id})
+      assert suggestion.description == "some description"
+      assert suggestion.title == "some title"
     end
 
-    test "create_idea/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Web.create_idea(@invalid_attrs)
+    test "create_suggestion/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Web.create_suggestion(@invalid_attrs)
     end
 
-    test "update_idea/2 with valid data updates the idea" do
-      idea = idea_fixture()
-      assert {:ok, %Idea{} = idea} = Web.update_idea(idea, %{@update_attrs | project_id: idea.project_id})
-      assert idea.description == "some updated description"
-      assert idea.title == "some updated title"
+    test "update_suggestion/2 with valid data updates the suggestion" do
+      suggestion = suggestion_fixture()
+      assert {:ok, %Suggestion{} = suggestion} = Web.update_suggestion(suggestion, %{@update_attrs | project_id: suggestion.project_id})
+      assert suggestion.description == "some updated description"
+      assert suggestion.title == "some updated title"
     end
 
-    test "update_idea/2 with invalid data returns error changeset" do
-      idea = idea_fixture()
-      assert {:error, %Ecto.Changeset{}} = Web.update_idea(idea, %{@invalid_attrs | project_id: idea.project_id})
-      assert idea == Web.get_idea!(idea.id)
+    test "update_suggestion/2 with invalid data returns error changeset" do
+      suggestion = suggestion_fixture()
+      assert {:error, %Ecto.Changeset{}} = Web.update_suggestion(suggestion, %{@invalid_attrs | project_id: suggestion.project_id})
+      assert suggestion == Web.get_suggestion!(suggestion.id)
     end
 
-    test "delete_idea/1 deletes the idea" do
-      idea = idea_fixture()
-      assert {:ok, %Idea{}} = Web.delete_idea(idea)
-      assert_raise Ecto.NoResultsError, fn -> Web.get_idea!(idea.id) end
+    test "delete_suggestion/1 deletes the suggestion" do
+      suggestion = suggestion_fixture()
+      assert {:ok, %Suggestion{}} = Web.delete_suggestion(suggestion)
+      assert_raise Ecto.NoResultsError, fn -> Web.get_suggestion!(suggestion.id) end
     end
 
-    test "change_idea/1 returns a idea changeset" do
-      idea = idea_fixture()
-      assert %Ecto.Changeset{} = Web.change_idea(idea)
+    test "change_suggestion/1 returns a suggestion changeset" do
+      suggestion = suggestion_fixture()
+      assert %Ecto.Changeset{} = Web.change_suggestion(suggestion)
     end
   end
 end

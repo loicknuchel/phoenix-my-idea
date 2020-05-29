@@ -18,7 +18,7 @@ defmodule MyIdeaWeb.Router do
 
     get "/", PageController, :index
     resources "/projects", ProjectController do
-      resources "/ideas", IdeaController
+      resources "/suggestions", SuggestionController
     end
   end
 
