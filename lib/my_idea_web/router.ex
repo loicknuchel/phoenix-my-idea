@@ -17,8 +17,9 @@ defmodule MyIdeaWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/projects", ProjectController
-    resources "/ideas", IdeaController
+    resources "/projects", ProjectController do
+      resources "/ideas", IdeaController
+    end
   end
 
   # Other scopes may use custom stacks.

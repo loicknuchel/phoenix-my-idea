@@ -14,5 +14,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.idea_path(@conn, :edit, @idea) %></span>
-<span><%= link "Back", to: Routes.idea_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.project_idea_path(@conn, :edit, @project_id, @idea) %></span>
+<span><%= link "Back", to: Routes.project_idea_path(@conn, :index, @project_id) %></span>

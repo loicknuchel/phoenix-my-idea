@@ -63,16 +63,19 @@ defmodule MyIdea.WebTest do
   end
 
   describe "ideas" do
+    alias MyIdea.Web.Project
     alias MyIdea.Web.Idea
 
-    @valid_attrs %{description: "some description", title: "some title"}
-    @update_attrs %{description: "some updated description", title: "some updated title"}
-    @invalid_attrs %{description: nil, title: nil}
+    @project_valid_attrs %{name: "some name"}
+    @valid_attrs %{description: "some description", title: "some title", project_id: nil}
+    @update_attrs %{description: "some updated description", title: "some updated title", project_id: nil}
+    @invalid_attrs %{description: nil, title: nil, project_id: nil}
 
     def idea_fixture(attrs \\ %{}) do
+      {:ok, %Project{} = project} = Web.create_project(@project_valid_attrs)
       {:ok, idea} =
         attrs
-        |> Enum.into(@valid_attrs)
+        |> Enum.into(%{@valid_attrs | project_id: project.id})
         |> Web.create_idea()
 
       idea
@@ -89,7 +92,8 @@ defmodule MyIdea.WebTest do
     end
 
     test "create_idea/1 with valid data creates a idea" do
-      assert {:ok, %Idea{} = idea} = Web.create_idea(@valid_attrs)
+      {:ok, %Project{} = project} = Web.create_project(@project_valid_attrs)
+      assert {:ok, %Idea{} = idea} = Web.create_idea(%{@valid_attrs | project_id: project.id})
       assert idea.description == "some description"
       assert idea.title == "some title"
     end
@@ -100,14 +104,14 @@ defmodule MyIdea.WebTest do
 
     test "update_idea/2 with valid data updates the idea" do
       idea = idea_fixture()
-      assert {:ok, %Idea{} = idea} = Web.update_idea(idea, @update_attrs)
+      assert {:ok, %Idea{} = idea} = Web.update_idea(idea, %{@update_attrs | project_id: idea.project_id})
       assert idea.description == "some updated description"
       assert idea.title == "some updated title"
     end
 
     test "update_idea/2 with invalid data returns error changeset" do
       idea = idea_fixture()
-      assert {:error, %Ecto.Changeset{}} = Web.update_idea(idea, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Web.update_idea(idea, %{@invalid_attrs | project_id: idea.project_id})
       assert idea == Web.get_idea!(idea.id)
     end
 

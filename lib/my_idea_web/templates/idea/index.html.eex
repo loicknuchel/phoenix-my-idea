@@ -16,13 +16,13 @@
       <td><%= idea.description %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.idea_path(@conn, :show, idea) %></span>
-        <span><%= link "Edit", to: Routes.idea_path(@conn, :edit, idea) %></span>
-        <span><%= link "Delete", to: Routes.idea_path(@conn, :delete, idea), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.project_idea_path(@conn, :show, @project_id, idea) %></span>
+        <span><%= link "Edit", to: Routes.project_idea_path(@conn, :edit, @project_id, idea) %></span>
+        <span><%= link "Delete", to: Routes.project_idea_path(@conn, :delete, @project_id, idea), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Idea", to: Routes.idea_path(@conn, :new) %></span>
+<span><%= link "New Idea", to: Routes.project_idea_path(@conn, :new, @project_id) %></span>

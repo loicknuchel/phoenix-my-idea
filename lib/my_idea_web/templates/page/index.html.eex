@@ -7,7 +7,6 @@
     <h2>Projects</h2>
     <ul>
       <li><%= link "projects", to: Routes.project_path(@conn, :index) %></li>
-      <li><%= link "ideas", to: Routes.idea_path(@conn, :index) %></li>
     </ul>
   </article>
 </section>
